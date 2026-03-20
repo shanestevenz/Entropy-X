@@ -108,65 +108,34 @@ export function generateMemorablePassword(options: MemorableOptions): string {
   return parts.join(options.separator);
 }
 
+import zxcvbn from "zxcvbn";
+
 export interface PasswordStrength {
   score: number; // 0-4
   label: "Weak" | "Fair" | "Good" | "Strong";
   color: string;
   feedback: string[];
+  crackTime: string;
+  crackTimeSeconds: number;
 }
 
 export function evaluatePasswordStrength(password: string): PasswordStrength {
-  const feedback: string[] = [];
-  let score = 0;
-
   if (!password) {
     return {
       score: 0,
       label: "Weak",
       color: "strength-weak",
       feedback: ["Enter a password to check strength"],
+      crackTime: "Instant",
+      crackTimeSeconds: 0,
     };
   }
 
-  // Length scoring
-  if (password.length >= 8) score++;
-  if (password.length >= 12) score++;
-  if (password.length >= 16) score++;
-  if (password.length < 8) feedback.push("Use at least 8 characters");
-
-  // Character variety scoring
-  const hasLower = /[a-z]/.test(password);
-  const hasUpper = /[A-Z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
-  const hasSymbol = /[^a-zA-Z0-9]/.test(password);
-
-  const varietyCount = [hasLower, hasUpper, hasNumber, hasSymbol].filter(Boolean).length;
-  if (varietyCount >= 3) score++;
-  if (varietyCount === 4) score++;
-
-  if (!hasUpper) feedback.push("Add uppercase letters");
-  if (!hasLower) feedback.push("Add lowercase letters");
-  if (!hasNumber) feedback.push("Add numbers");
-  if (!hasSymbol) feedback.push("Add symbols");
-
-  // Check for common patterns
-  if (/^[a-zA-Z]+$/.test(password)) {
-    feedback.push("Avoid using only letters");
-    score = Math.max(0, score - 1);
-  }
-  if (/^[0-9]+$/.test(password)) {
-    feedback.push("Avoid using only numbers");
-    score = Math.max(0, score - 1);
-  }
-  if (/(.)\1{2,}/.test(password)) {
-    feedback.push("Avoid repeated characters");
-    score = Math.max(0, score - 1);
-  }
-
-  // Normalize score to 0-4
-  score = Math.min(4, Math.max(0, score));
-
-  const strengthMap: Record<number, Pick<PasswordStrength, "label" | "color">> = {
+  // Use zxcvbn for comprehensive password analysis
+  const result = zxcvbn(password);
+  
+  // Map zxcvbn score (0-4) to our labels and colors
+  const strengthMap: Record<number, { label: PasswordStrength["label"]; color: string }> = {
     0: { label: "Weak", color: "strength-weak" },
     1: { label: "Weak", color: "strength-weak" },
     2: { label: "Fair", color: "strength-fair" },
@@ -174,9 +143,43 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
     4: { label: "Strong", color: "strength-strong" },
   };
 
+  // Build feedback array from zxcvbn suggestions
+  const feedback: string[] = [];
+  
+  if (result.feedback.warning) {
+    feedback.push(result.feedback.warning);
+  }
+  
+  result.feedback.suggestions.forEach((suggestion) => {
+    if (suggestion && !feedback.includes(suggestion)) {
+      feedback.push(suggestion);
+    }
+  });
+
+  // Add our own tips if zxcvbn doesn't provide enough
+  if (feedback.length === 0) {
+    if (result.score === 4) {
+      feedback.push("Excellent password!");
+    } else if (result.score === 3) {
+      feedback.push("Good password, but could be stronger");
+    }
+  }
+
+  // Get crack time display string
+  const crackTime = result.crack_times_display.offline_slow_hashing_1e4_per_second as string;
+  const crackTimeSeconds = result.crack_times_seconds.offline_slow_hashing_1e4_per_second as number;
+
   return {
-    score,
-    ...strengthMap[score],
-    feedback: feedback.length > 0 ? feedback : ["Great password!"],
+    score: result.score,
+    ...strengthMap[result.score],
+    feedback: feedback.length > 0 ? feedback : ["Enter a longer password"],
+    crackTime: formatCrackTime(crackTime),
+    crackTimeSeconds,
   };
+}
+
+function formatCrackTime(time: string): string {
+  // Capitalize first letter and clean up the display
+  if (!time) return "Instant";
+  return time.charAt(0).toUpperCase() + time.slice(1);
 }

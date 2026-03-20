@@ -72,7 +72,11 @@ export function PasswordGenerator() {
 
         {/* Password Display */}
         <div className="mb-6">
-          <PasswordDisplay password={password} onRegenerate={generatePassword} />
+          <PasswordDisplay 
+            password={password} 
+            onPasswordChange={setPassword}
+            onRegenerate={generatePassword} 
+          />
         </div>
 
         {/* Strength Meter */}
