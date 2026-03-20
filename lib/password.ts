@@ -1,3 +1,5 @@
+import zxcvbn from "zxcvbn";
+
 // Word lists for memorable passwords
 const adjectives = [
   "happy", "brave", "swift", "calm", "bright", "clever", "eager", "gentle",
@@ -107,8 +109,6 @@ export function generateMemorablePassword(options: MemorableOptions): string {
 
   return parts.join(options.separator);
 }
-
-import zxcvbn from "zxcvbn";
 
 export interface PasswordStrength {
   score: number; // 0-4

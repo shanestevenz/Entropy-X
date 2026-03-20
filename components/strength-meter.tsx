@@ -8,37 +8,51 @@ interface StrengthMeterProps {
   strength: PasswordStrength;
 }
 
-const colorMap: Record<string, string> = {
-  "strength-weak": "bg-strength-weak",
-  "strength-fair": "bg-strength-fair",
-  "strength-good": "bg-strength-good",
-  "strength-strong": "bg-strength-strong",
-};
-
-const textColorMap: Record<string, string> = {
-  "strength-weak": "text-strength-weak",
-  "strength-fair": "text-strength-fair",
-  "strength-good": "text-strength-good",
-  "strength-strong": "text-strength-strong",
-};
-
-const bgLightMap: Record<string, string> = {
-  "strength-weak": "bg-strength-weak/10",
-  "strength-fair": "bg-strength-fair/10",
-  "strength-good": "bg-strength-good/10",
-  "strength-strong": "bg-strength-strong/10",
-};
-
-const iconMap: Record<string, React.ReactNode> = {
-  "strength-weak": <ShieldAlert className="h-5 w-5" />,
-  "strength-fair": <AlertTriangle className="h-5 w-5" />,
-  "strength-good": <Shield className="h-5 w-5" />,
-  "strength-strong": <CheckCircle className="h-5 w-5" />,
-};
-
 export function StrengthMeter({ strength }: StrengthMeterProps) {
   const bars = 4;
   const filledBars = strength.score;
+
+  // Direct color values for reliability
+  const getBarColor = (index: number) => {
+    if (index >= filledBars) return "bg-border";
+    switch (strength.color) {
+      case "strength-weak": return "bg-[hsl(0,84%,60%)]";
+      case "strength-fair": return "bg-[hsl(38,92%,50%)]";
+      case "strength-good": return "bg-[hsl(162,100%,41%)]";
+      case "strength-strong": return "bg-[hsl(142,76%,36%)]";
+      default: return "bg-border";
+    }
+  };
+
+  const getTextColor = () => {
+    switch (strength.color) {
+      case "strength-weak": return "text-[hsl(0,84%,60%)]";
+      case "strength-fair": return "text-[hsl(38,92%,50%)]";
+      case "strength-good": return "text-[hsl(162,100%,41%)]";
+      case "strength-strong": return "text-[hsl(142,76%,36%)]";
+      default: return "text-muted-foreground";
+    }
+  };
+
+  const getBgLight = () => {
+    switch (strength.color) {
+      case "strength-weak": return "bg-[hsl(0,84%,60%,0.1)]";
+      case "strength-fair": return "bg-[hsl(38,92%,50%,0.1)]";
+      case "strength-good": return "bg-[hsl(162,100%,41%,0.1)]";
+      case "strength-strong": return "bg-[hsl(142,76%,36%,0.1)]";
+      default: return "bg-secondary";
+    }
+  };
+
+  const getIcon = () => {
+    switch (strength.color) {
+      case "strength-weak": return <ShieldAlert className="h-5 w-5" />;
+      case "strength-fair": return <AlertTriangle className="h-5 w-5" />;
+      case "strength-good": return <Shield className="h-5 w-5" />;
+      case "strength-strong": return <CheckCircle className="h-5 w-5" />;
+      default: return <ShieldAlert className="h-5 w-5" />;
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -46,8 +60,8 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">Password Strength</span>
-          <div className={cn("flex items-center gap-1.5", textColorMap[strength.color])}>
-            {iconMap[strength.color]}
+          <div className={cn("flex items-center gap-1.5", getTextColor())}>
+            {getIcon()}
             <span className="text-sm font-semibold">{strength.label}</span>
           </div>
         </div>
@@ -58,7 +72,7 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
               key={i}
               className={cn(
                 "h-2 flex-1 rounded-full transition-all duration-300",
-                i < filledBars ? colorMap[strength.color] : "bg-border"
+                getBarColor(i)
               )}
             />
           ))}
@@ -68,15 +82,15 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
       {/* Crack time estimate */}
       <div className={cn(
         "flex items-center gap-3 rounded-lg p-3",
-        bgLightMap[strength.color]
+        getBgLight()
       )}>
-        <div className={cn("shrink-0", textColorMap[strength.color])}>
+        <div className={cn("shrink-0", getTextColor())}>
           <Clock className="h-5 w-5" />
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted-foreground">Estimated time to crack</p>
-          <p className={cn("text-sm font-semibold truncate", textColorMap[strength.color])}>
-            {strength.crackTime}
+          <p className={cn("text-sm font-semibold truncate", getTextColor())}>
+            {strength.crackTime || "Calculating..."}
           </p>
         </div>
       </div>
