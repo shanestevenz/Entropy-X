@@ -59,13 +59,13 @@ export function MemorableOptions({ options, onChange }: MemorableOptionsProps) {
               Word Separator
             </label>
 
-            <div className="grid pt-3 grid-cols-2 gap-2">
+            <div className="grid pt-3 grid-cols-2 gap-2 ">
               {separatorOptions.map((sep) => (
                 <button
                   key={sep.label}
                   onClick={() => onChange({ ...options, separator: sep.value })}
                   className={cn(
-                    "rounded-lg border p-3 text-left transition-all",
+                    "rounded-lg border p-3 text-left transition-all ",
                     options.separator === sep.value
                       ? "border-primary bg-primary/10"
                       : "bg-card hover:bg-accent"
