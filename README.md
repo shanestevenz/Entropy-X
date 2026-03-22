@@ -1,6 +1,6 @@
 # 🔐 EntropyX
 
-**EntropyX** is a modern password generator and strength analyzer built to help users create secure, high-entropy passwords with real-time feedback.
+[**EntropyX**](https://www.entropyx.shane-stevens.com) is a modern password generator and strength analyzer built to help users create secure, high-entropy passwords with real-time feedback.
 
 Powered by [`zxcvbn`](https://github.com/dropbox/zxcvbn), EntropyX evaluates passwords based on real-world attack patterns and provides actionable insights to improve security — not just random complexity.
 
@@ -8,10 +8,10 @@ Powered by [`zxcvbn`](https://github.com/dropbox/zxcvbn), EntropyX evaluates pas
 
 EntropyX uses zxcvbn, a password strength estimator developed by Dropbox, which analyzes passwords using:
 
-Common password patterns
-Dictionary attacks
-Substitutions (e.g. p@ssw0rd)
-Real-world cracking strategies
+- Common password patterns
+- Dictionary attacks
+- Substitutions (e.g. p@ssw0rd)
+- Real-world cracking strategies
 
 This results in a more accurate estimate than traditional “length + symbols” checkers.
 
@@ -54,3 +54,4 @@ EntropyX does not store, transmit, or share any passwords. All password generati
 - Undo/History of Generated password
 - Apply options to currently generated instead of regenerating with every change (allows users to quickly create variations)
 - Export to password manager (1Password, NordPass, LastPass, etc)
+- OnMount optimizations
