@@ -65,7 +65,7 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
             <span className="text-sm font-semibold">{strength.label}</span>
           </div>
         </div>
-        
+
         <div className="flex gap-1.5">
           {Array.from({ length: bars }).map((_, i) => (
             <div
@@ -87,25 +87,60 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
         <div className={cn("shrink-0", getTextColor())}>
           <Clock className="h-5 w-5" />
         </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-xs text-muted-foreground">Estimated time to crack</p>
-          <p className={cn("text-sm font-semibold truncate", getTextColor())}>
-            {strength.crackTime || "Calculating..."}
-          </p>
-        </div>
-      </div>
 
-      {/* Feedback tips */}
-      {strength.feedback.length > 0 && (
-        <div className="space-y-1.5">
-          {strength.feedback.slice(0, 2).map((tip, i) => (
-            <p key={i} className="text-xs text-muted-foreground flex  pl-4 items-start gap-2">
-              
-              <li >{tip}</li>
+
+        <div className="flex-1 min-w-0 cursor-pointer relative group">
+          <p className="text-xs text-muted-foreground">
+            Estimated time to crack
+          </p>
+
+          <div className="relative h-5 overflow-hidden">
+
+            {/* Default text */}
+            <p
+              className={cn(
+                "absolute inset-0 text-sm font-semibold truncate transition-all duration-300",
+                "group-hover:translate-y-full group-hover:opacity-0",
+                getTextColor()
+              )}
+            >
+              {strength.crackTime || "Calculating..."}
             </p>
-          ))}
-        </div>
-      )}
+
+            {/* Hover text */}
+            <p
+              className={cn(
+                "absolute inset-0 text-sm font-semibold truncate transition-all duration-300",
+                "-translate-y-full opacity-0",
+                "group-hover:translate-y-0 group-hover:opacity-100",
+                getTextColor()
+              )}
+            >
+              {strength.numberOfGuesses
+                ? `${strength.numberOfGuesses.toLocaleString()} guesses`
+                : ""}
+            </p>
+
+          </div>
+
+      </div>
     </div>
+
+      {/* Feedback tips */ }
+  {
+    strength.feedback.length > 0 && (
+      <ul className="space-y-1.5 list-disc pl-4">
+        {strength.feedback.slice(0, 2).map((tip, i) => (
+          <li
+            key={i}
+            className="text-xs text-muted-foreground"
+          >
+            {tip}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+    </div >
   );
 }

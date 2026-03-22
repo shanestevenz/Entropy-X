@@ -153,6 +153,7 @@ export interface PasswordStrength {
   feedback: string[];
   crackTime: string;
   crackTimeSeconds: number;
+  numberOfGuesses: number;
 }
 
 export function evaluatePasswordStrength(password: string): PasswordStrength {
@@ -164,6 +165,7 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
       feedback: ["Enter a password to check strength"],
       crackTime: "Instant",
       crackTimeSeconds: 0,
+      numberOfGuesses: 0,
     };
   }
 
@@ -195,7 +197,7 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
   // zxcvbn Docs: https://github.com/dropbox/zxcvbn?tab=readme-ov-file#usage
   // get crack time display string
   // other metric to consider result.guesses -> TODO:  add to hover tooltip over crackTime    
-
+  const numberOfGuesses = result.guesses;
   const crackTime = result.crack_times_display.offline_slow_hashing_1e4_per_second as string;
   const crackTimeSeconds = result.crack_times_seconds.offline_slow_hashing_1e4_per_second as number;
 
@@ -205,6 +207,7 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
     feedback: feedback.length > 0 ? feedback : ["Enter a longer password"],
     crackTime: formatCrackTime(crackTime),
     crackTimeSeconds,
+    numberOfGuesses,
   };
 }
 
