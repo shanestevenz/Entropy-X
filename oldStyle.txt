@@ -1,0 +1,54 @@
+Password generator odl style
+
+
+
+
+return (
+    <div className="mx-auto w-full max-w-lg">
+      <div className="rounded-2xl border bg-card p-6 md:p-8">
+        {/* Header */}
+        <div className="mb-6 flex items-center gap-3">
+          <div className="rounded-lg bg-primary/10 p-2.5">
+            <Shield className="h-6 w-6 text-primary" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-foreground">Password Generator</h1>
+            <p className="text-sm text-muted-foreground">Create secure passwords instantly</p>
+          </div>
+        </div>
+
+        {/* Tab Selector */}
+        <div className="mb-6">
+          <TabSelector activeTab={activeTab} onTabChange={setActiveTab} />
+        </div>
+
+        {/* Password Display */}
+        <div className="mb-6">
+          <PasswordDisplay
+            password={password}
+            onPasswordChange={setPassword}
+            onRegenerate={generatePassword}
+          />
+        </div>
+
+        {/* Strength Meter */}
+        <div className="mb-6 rounded-lg border bg-secondary/50 p-4">
+          <StrengthMeter strength={strength} />
+        </div>
+
+        {/* Options Panel */}
+        <div className="border-t pt-6">
+          {activeTab === "random" ? (
+            <RandomOptions options={randomOptions} onChange={setRandomOptions} />
+          ) : (
+            <MemorableOptions options={memorableOptions} onChange={setMemorableOptions} />
+          )}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <p className="mt-4 text-center text-xs text-muted-foreground">
+        Passwords are generated locally and never stored or transmitted
+      </p>
+    </div>
+  );
