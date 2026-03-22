@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Copy, Check, RefreshCw, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface PasswordDisplayProps {
+interface PasswordBarProps {
   password: string;
   onPasswordChange: (password: string) => void;
   onRegenerate: () => void;
 }
 
-export function PasswordDisplay({ password, onPasswordChange, onRegenerate }: PasswordDisplayProps) {
+export function PasswordBar({ password, onPasswordChange, onRegenerate }: PasswordBarProps) {
   const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(true);
 

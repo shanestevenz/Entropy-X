@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { TabSelector, type TabType } from "./tab-selector";
-import { PasswordDisplay } from "./password-display";
+import { PasswordBar } from "./password-bar";
 import { StrengthMeter } from "./strength-meter";
 import { RandomOptions } from "./random-options";
 import { MemorableOptions } from "./memorable-options";
@@ -15,6 +15,7 @@ import {
 } from "@/lib/password";
 import { Shield } from "lucide-react";
 
+// TODO: Consider moving this component back into to page.tsx for simplicity
 export function App() {
   const [activeTab, setActiveTab] = useState<TabType>("memorable");
   const [password, setPassword] = useState("");
@@ -66,7 +67,7 @@ export function App() {
 
         {/* Password Display */}
         <div className="mb-6">
-          <PasswordDisplay
+          <PasswordBar
             password={password}
             onPasswordChange={setPassword}
             onRegenerate={generatePassword}

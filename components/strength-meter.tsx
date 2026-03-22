@@ -118,7 +118,7 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
             >
               {strength.numberOfGuesses
                 ? `${strength.numberOfGuesses.toLocaleString()} guesses`
-                : ""}
+                : "0 guesses"}
             </p>
 
           </div>
