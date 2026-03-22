@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "EntropyX",
-  description: "Generate strong, memorable, or random passwords with real-time strength testing. Customize length, characters, and more.",
+  description:
+    "Generate strong, memorable, or random passwords with real-time strength testing. Customize length, characters, and more.",
 };
 
 export const viewport: Viewport = {

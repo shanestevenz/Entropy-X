@@ -56,14 +56,13 @@ export function App() {
       <div className="p-6 md:p-8">
         {/* Header */}
         <div className="mb-6  flex items-center justify-center gap-3 ">
-          
           <div>
             <h1 className="text-6xl font-bold text-foreground text-center">EntropyX</h1>
-            <p className="text-xl text-muted-foreground">Create and test secure passwords instantly</p>
+            <p className="text-xl text-muted-foreground">
+              Create and test secure passwords instantly
+            </p>
           </div>
         </div>
-
-      
 
         {/* Password Display */}
         <div className="mb-6">
@@ -79,12 +78,10 @@ export function App() {
           <StrengthMeter strength={strength} />
         </div>
 
-
-       {/* Tab Selector */}
+        {/* Tab Selector */}
         <div className="mb-6">
           <TabSelector activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
-
 
         {/* Options Panel */}
         <div className="border-t pt-6">

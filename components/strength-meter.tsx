@@ -16,41 +16,61 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
   const getBarColor = (index: number) => {
     if (index >= filledBars) return "bg-border";
     switch (strength.color) {
-      case "strength-weak": return "bg-[hsl(0,84%,60%)]";
-      case "strength-fair": return "bg-[hsl(38,92%,50%)]";
-      case "strength-good": return "bg-[hsl(162,100%,41%)]";
-      case "strength-strong": return "bg-[hsl(142,76%,36%)]";
-      default: return "bg-border";
+      case "strength-weak":
+        return "bg-[hsl(0,84%,60%)]";
+      case "strength-fair":
+        return "bg-[hsl(38,92%,50%)]";
+      case "strength-good":
+        return "bg-[hsl(162,100%,41%)]";
+      case "strength-strong":
+        return "bg-[hsl(142,76%,36%)]";
+      default:
+        return "bg-border";
     }
   };
 
   const getTextColor = () => {
     switch (strength.color) {
-      case "strength-weak": return "text-[hsl(0,84%,60%)]";
-      case "strength-fair": return "text-[hsl(38,92%,50%)]";
-      case "strength-good": return "text-[hsl(162,100%,41%)]";
-      case "strength-strong": return "text-[hsl(142,76%,36%)]";
-      default: return "text-muted-foreground";
+      case "strength-weak":
+        return "text-[hsl(0,84%,60%)]";
+      case "strength-fair":
+        return "text-[hsl(38,92%,50%)]";
+      case "strength-good":
+        return "text-[hsl(162,100%,41%)]";
+      case "strength-strong":
+        return "text-[hsl(142,76%,36%)]";
+      default:
+        return "text-muted-foreground";
     }
   };
 
   const getBgLight = () => {
     switch (strength.color) {
-      case "strength-weak": return "bg-[hsl(0,84%,60%,0.1)]";
-      case "strength-fair": return "bg-[hsl(38,92%,50%,0.1)]";
-      case "strength-good": return "bg-[hsl(162,100%,41%,0.1)]";
-      case "strength-strong": return "bg-[hsl(142,76%,36%,0.1)]";
-      default: return "bg-secondary";
+      case "strength-weak":
+        return "bg-[hsl(0,84%,60%,0.1)]";
+      case "strength-fair":
+        return "bg-[hsl(38,92%,50%,0.1)]";
+      case "strength-good":
+        return "bg-[hsl(162,100%,41%,0.1)]";
+      case "strength-strong":
+        return "bg-[hsl(142,76%,36%,0.1)]";
+      default:
+        return "bg-secondary";
     }
   };
 
   const getIcon = () => {
     switch (strength.color) {
-      case "strength-weak": return <ShieldAlert className="h-5 w-5" />;
-      case "strength-fair": return <AlertTriangle className="h-5 w-5" />;
-      case "strength-good": return <Shield className="h-5 w-5" />;
-      case "strength-strong": return <CheckCircle className="h-5 w-5" />;
-      default: return <ShieldAlert className="h-5 w-5" />;
+      case "strength-weak":
+        return <ShieldAlert className="h-5 w-5" />;
+      case "strength-fair":
+        return <AlertTriangle className="h-5 w-5" />;
+      case "strength-good":
+        return <Shield className="h-5 w-5" />;
+      case "strength-strong":
+        return <CheckCircle className="h-5 w-5" />;
+      default:
+        return <ShieldAlert className="h-5 w-5" />;
     }
   };
 
@@ -70,32 +90,22 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
           {Array.from({ length: bars }).map((_, i) => (
             <div
               key={i}
-              className={cn(
-                "h-2 flex-1 rounded-full transition-all duration-300",
-                getBarColor(i)
-              )}
+              className={cn("h-2 flex-1 rounded-full transition-all duration-300", getBarColor(i))}
             />
           ))}
         </div>
       </div>
 
       {/* Crack time estimate */}
-      <div className={cn(
-        "flex items-center gap-3 rounded-lg p-3",
-        getBgLight()
-      )}>
+      <div className={cn("flex items-center gap-3 rounded-lg p-3", getBgLight())}>
         <div className={cn("shrink-0", getTextColor())}>
           <Clock className="h-5 w-5" />
         </div>
 
-
         <div className="flex-1 min-w-0 cursor-pointer relative group">
-          <p className="text-xs text-muted-foreground">
-            Estimated time to crack
-          </p>
+          <p className="text-xs text-muted-foreground">Estimated time to crack</p>
 
           <div className="relative h-5 overflow-hidden">
-
             {/* Default text */}
             <p
               className={cn(
@@ -120,27 +130,20 @@ export function StrengthMeter({ strength }: StrengthMeterProps) {
                 ? `${strength.numberOfGuesses.toLocaleString()} guesses`
                 : "0 guesses"}
             </p>
-
           </div>
-
+        </div>
       </div>
-    </div>
 
-      {/* Feedback tips */ }
-  {
-    strength.feedback.length > 0 && (
-      <ul className="space-y-1.5 list-disc pl-4">
-        {strength.feedback.slice(0, 2).map((tip, i) => (
-          <li
-            key={i}
-            className="text-xs text-muted-foreground"
-          >
-            {tip}
-          </li>
-        ))}
-      </ul>
-    )
-  }
-    </div >
+      {/* Feedback tips */}
+      {strength.feedback.length > 0 && (
+        <ul className="space-y-1.5 list-disc pl-4">
+          {strength.feedback.slice(0, 2).map((tip, i) => (
+            <li key={i} className="text-xs text-muted-foreground">
+              {tip}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }

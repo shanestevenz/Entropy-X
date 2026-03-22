@@ -18,32 +18,39 @@ This results in a more accurate estimate than traditional “length + symbols”
 ## 🚀 Features
 
 ### 🔑 **Secure Password Generation**
-  - Generate strong, randomized passwords instantly
+
+- Generate strong, randomized passwords instantly
 
 ### 📊 **Real-Time Strength Analysis**
-  - Powered by `zxcvbn` for realistic scoring
+
+- Powered by `zxcvbn` for realistic scoring
 
 ### ⏱️ **Crack Time Estimation**
-  - See how long it would take to break your password
+
+- See how long it would take to break your password
 
 ### 💡 **Smart Feedback**
-  - Suggestions to improve weak passwords
+
+- Suggestions to improve weak passwords
 
 ### 👁️ **Show / Hide Password**
-  - Toggle visibility for usability and security
+
+- Toggle visibility for usability and security
 
 ### 📋 **One-Click Copy**
-  - Quickly copy passwords to clipboard
+
+- Quickly copy passwords to clipboard
 
 ### ⚡ **Smooth UI Interactions**
-  - Subtle animations for a responsive feel
+
+- Subtle animations for a responsive feel
 
 ## 🔐 Privacy
 
 EntropyX does not store, transmit, or share any passwords. All password generation and strength analysis are performed locally in your browser. Your data never leaves your device.
 
-
 ## ⚡ Future Improvements
+
 - Undo/History of Generated password
 - Apply options to currently generated instead of regenerating with every change (allows users to quickly create variations)
 - Export to password manager (1Password, NordPass, LastPass, etc)

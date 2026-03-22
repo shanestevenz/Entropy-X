@@ -25,9 +25,7 @@ export function MemorableOptions({ options, onChange }: MemorableOptionsProps) {
       {/* Word Count Slider */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-foreground">
-            Number of Words
-          </label>
+          <label className="text-sm font-medium text-foreground">Number of Words</label>
           <span className="rounded bg-secondary px-2.5 py-1 text-sm font-semibold tabular-nums text-foreground">
             {options.wordCount}
           </span>
@@ -49,15 +47,9 @@ export function MemorableOptions({ options, onChange }: MemorableOptionsProps) {
 
       {/* Word Separator Selection */}
       <div className="space-y-3">
-
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
           <div>
-
-            <label className="text-sm font-medium text-foreground">
-              Word Separator
-            </label>
+            <label className="text-sm font-medium text-foreground">Word Separator</label>
 
             <div className="grid pt-3 grid-cols-2 gap-2 ">
               {separatorOptions.map((sep) => (
@@ -72,16 +64,16 @@ export function MemorableOptions({ options, onChange }: MemorableOptionsProps) {
                   )}
                 >
                   <span className="text-sm font-medium text-foreground">{sep.label}</span>
-                  <p className="text-xs text overflow-hidden text-muted-foreground">{sep.preview}</p>
+                  <p className="text-xs text overflow-hidden text-muted-foreground">
+                    {sep.preview}
+                  </p>
                 </button>
               ))}
             </div>
           </div>
           {/* Additional Options */}
           <div className="space-y-3 ">
-            <label className="text-sm font-medium text-foreground">
-              Additional Options
-            </label>
+            <label className="text-sm font-medium text-foreground">Additional Options</label>
             <div className="space-y-2 pt-3">
               <label className="flex cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 transition-colors hover:bg-accent">
                 <input
@@ -110,13 +102,8 @@ export function MemorableOptions({ options, onChange }: MemorableOptionsProps) {
               </label>
             </div>
           </div>
-
         </div>
-
       </div>
-
-
-
     </div>
   );
 }

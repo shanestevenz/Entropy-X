@@ -21,9 +21,7 @@ export function RandomOptions({ options, onChange }: RandomOptionsProps) {
       {/* Length Slider */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-foreground">
-            Password Length
-          </label>
+          <label className="text-sm font-medium text-foreground">Password Length</label>
           <span className="rounded bg-secondary px-2.5 py-1 text-sm font-semibold tabular-nums text-foreground">
             {options.length}
           </span>
@@ -45,9 +43,7 @@ export function RandomOptions({ options, onChange }: RandomOptionsProps) {
 
       {/* Character Options */}
       <div className="space-y-3">
-        <label className="text-sm font-medium text-foreground">
-          Character Types
-        </label>
+        <label className="text-sm font-medium text-foreground">Character Types</label>
         <div className="grid grid-cols-2 gap-3">
           <label className="flex cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 transition-colors hover:bg-accent">
             <input
@@ -61,7 +57,7 @@ export function RandomOptions({ options, onChange }: RandomOptionsProps) {
               <p className="text-xs text-muted-foreground">A-Z</p>
             </div>
           </label>
-          
+
           <label className="flex cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 transition-colors hover:bg-accent">
             <input
               type="checkbox"
@@ -74,7 +70,7 @@ export function RandomOptions({ options, onChange }: RandomOptionsProps) {
               <p className="text-xs text-muted-foreground">a-z</p>
             </div>
           </label>
-          
+
           <label className="flex cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 transition-colors hover:bg-accent">
             <input
               type="checkbox"
@@ -87,7 +83,7 @@ export function RandomOptions({ options, onChange }: RandomOptionsProps) {
               <p className="text-xs text-muted-foreground">0-9</p>
             </div>
           </label>
-          
+
           <label className="flex cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 transition-colors hover:bg-accent">
             <input
               type="checkbox"

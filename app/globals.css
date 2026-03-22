@@ -7,7 +7,7 @@
   --card-foreground: 0 0% 9%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 9%;
-  --primary: 162 100% 41%; 
+  --primary: 162 100% 41%;
   --primary-foreground: 0 0% 100%;
   --secondary: 0 0% 96%;
   --secondary-foreground: 0 0% 9%;
@@ -21,7 +21,7 @@
   --input: 0 0% 90%;
   --ring: 162 100% 41%;
   --radius: 0.625rem;
-  
+
   /* Strength colors */
   --strength-weak: 0 84% 60%;
   --strength-fair: 38 92% 50%;
@@ -36,7 +36,7 @@
   --card-foreground: 0 0% 95%;
   --popover: 0 0% 7%;
   --popover-foreground: 0 0% 95%;
-  
+
   --primary: 162 100% 41%;
   --primary-foreground: 0 0% 4%;
   --secondary: 0 0% 12%;
@@ -50,7 +50,7 @@
   --border: 0 0% 18%;
   --input: 0 0% 18%;
   --ring: 162 100% 41%;
-  
+
   /* Strength colors */
   --strength-weak: 0 84% 60%;
   --strength-fair: 38 92% 50%;
@@ -82,7 +82,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   --color-strength-weak: hsl(var(--strength-weak));
   --color-strength-fair: hsl(var(--strength-fair));
   --color-strength-good: hsl(var(--strength-good));
@@ -96,7 +96,7 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-sans); 
+  font-family: var(--font-sans);
 }
 
 /* Custom slider styling */
@@ -168,7 +168,7 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"]:checked::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 5px;
   top: 2px;
