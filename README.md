@@ -8,10 +8,10 @@ Powered by [`zxcvbn`](https://github.com/dropbox/zxcvbn), EntropyX evaluates pas
 
 EntropyX uses zxcvbn, a password strength estimator developed by Dropbox, which analyzes passwords using:
 
-Common password patterns
-Dictionary attacks
-Substitutions (e.g. p@ssw0rd)
-Real-world cracking strategies
+- Common password patterns
+- Dictionary attacks
+- Substitutions (e.g. p@ssw0rd)
+- Real-world cracking strategies
 
 This results in a more accurate estimate than traditional “length + symbols” checkers.
 
